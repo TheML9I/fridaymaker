@@ -8,8 +8,7 @@ db = PostgresqlExtDatabase(
     database='steamdb',
     user='steamdb',
     password='steamdb',
-    port=5432,
-    register_hstore=True
+    port=5432
 )
 
 
@@ -42,11 +41,4 @@ class Game(BaseModel):
 
     def save(self, *args, **kwargs):
         self.updated_at = datetime.datetime.now()
-        return super(Something, self).save(*args, **kwargs)
-
-
-if __name__ == "__main__":
-    try:
-        Game.create_table()
-    except peewee.OperationalError:
-        print('Games table already exists!')
+        return super(Game, self).save(*args, **kwargs)
